@@ -20,6 +20,9 @@ vector<string> readFile(string aocname, string filename) {
         strings->emplace_back(line);
     }
 
+    // To trigger some stuff in the tasks, add empty line
+    strings->emplace_back("");
+
     inFile.close();
     return *strings;
 }
