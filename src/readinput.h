@@ -4,11 +4,13 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <utility>
 #include <vector>
 using namespace std;
 
-vector<string> readFile(string aocname, string filename) {
-    string name = "../../../src/" + aocname + "/input/" + filename + ".txt";
+inline vector<string> readFile(const string& aocname, const string& filename) {
+    //string name = "../../../src/" + aocname + "/input/" + filename + ".txt";      // Working directory as debug (macOS) (perhaps in error)
+    string name = "./src/" + aocname + "/input/" + filename + ".txt";               // Working directory as root (Win11)
     std::ifstream inFile(name);
     auto* strings = new vector<string>();
     if (!inFile.is_open()) {
@@ -21,12 +23,13 @@ vector<string> readFile(string aocname, string filename) {
     }
 
     // To trigger some stuff in the tasks, add empty line
-    strings->emplace_back("");
+    //strings->emplace_back("");    // nevermind
 
     inFile.close();
     return *strings;
 }
-vector<string> readFile(string filename) {
+
+inline vector<string> readFile(const string& filename) {
     return readFile("AoC24", filename);
 }
 
